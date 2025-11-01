@@ -52,4 +52,12 @@ describe('출력 테스트', () => {
       expect(logSpy).toHaveBeenCalledWith(log);
     });
   });
+
+  test('수익률을 출력한다.', () => {
+    const profitRate = 62.5;
+    const logSpy = getLogSpy();
+
+    outputView.printProfit(profitRate);
+    expect(logSpy).toHaveBeenCalledWith(`총 수익률은 ${profitRate}%입니다.`);
+  });
 });

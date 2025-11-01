@@ -19,6 +19,10 @@ export default class OutputView {
     this.#printMessage(`6개 일치 (2,000,000,000원) - ${rankInformation.SIX_MATCH}개`);
   }
 
+  printProfit(profitRate) {
+    this.#printMessage(SYSTEM_MESSAGE.OUTPUT_PROFIT(profitRate));
+  }
+
   #printMessage(message) {
     Console.print(message);
   }
