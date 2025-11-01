@@ -1,5 +1,5 @@
 import { LOTTO } from './data/constants.js';
-import { ERROR_MESSAGE } from './data/messages';
+import { ERROR_MESSAGE } from './data/messages.js';
 
 class Lotto {
   #numbers;
@@ -7,6 +7,10 @@ class Lotto {
   constructor(numbers) {
     this.#validate(numbers);
     this.#numbers = numbers;
+  }
+
+  getNumbers() {
+    return [...this.#numbers.sort((a, b) => a - b)];
   }
 
   #validate(numbers) {

@@ -10,6 +10,6 @@ export default class LottoFactory {
   createLotto() {
     return new Lotto(
       Random.pickUniqueNumbersInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.COUNT)
-    );
+    ).getNumbers();
   }
 }

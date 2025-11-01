@@ -2,7 +2,8 @@ export const SYSTEM_MESSAGE = Object.freeze({
   INPUT_PURCHASE_AMOUNT: '구매금액을 입력해 주세요\n',
   INPUT_WINNING_NUMBERS: '당첨 번호를 입력해 주세요\n',
   INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요\n',
-  OUTPUT_RESULT: '당첨 통계\n---\n',
+  OUTPUT_PURCHASE_COUNT: (count) => `${count}개를 구매했습니다.`,
+  OUTPUT_RESULT: '당첨 통계\n---',
   OUTPUT_PROFIT: (profit) => `총 수익률은 ${profit}%입니다.`,
 });
 
