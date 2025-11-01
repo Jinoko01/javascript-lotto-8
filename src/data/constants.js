@@ -1,5 +1,14 @@
 export const LOTTO = Object.freeze({
+  AMOUNT: 1000,
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
   COUNT: 6,
+});
+
+export const REWARD = Object.freeze({
+  SIX_MATCH: 2000000000,
+  FIVE_MATCH_WITH_BONUS: 30000000,
+  FIVE_MATCH: 1500000,
+  FOUR_MATCH: 50000,
+  THREE_MATCH: 5000,
 });
