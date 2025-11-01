@@ -6,11 +6,14 @@ class App {
   async run() {
     const inputView = new InputView();
     const outputView = new OutputView();
-    const purchaseAmount = await inputView.getPurChaseAmount();
+    const purchaseAmount = await inputView.inputPurChaseAmount();
+
     const lottoCount = purchaseAmount / 1000;
     const lottoFactory = new LottoFactory();
     const lottoList = lottoFactory.createLottos(lottoCount);
     outputView.printLottos(lottoList);
+
+    const winningNumbers = await inputView.inputWinningNumbers();
   }
 }
 

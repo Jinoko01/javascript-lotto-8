@@ -14,18 +14,41 @@ describe('입력 테스트', () => {
     const results = [1000, 2000, 300000000000];
 
     mockQuestions([...inputs]);
-    const promise = Promise.all(inputs.map(() => inputView.getPurChaseAmount()));
 
-    await expect(promise).resolves.toEqual(results);
+    await Promise.all(
+      inputs.map((_, index) =>
+        expect(inputView.inputPurChaseAmount()).resolves.toEqual(results[index])
+      )
+    );
   });
 
   test('1,000원으로 나누어 떨어지지 않으면 에러를 발생시킨다.', async () => {
-    const inputs = ['1001', '2001', '3001'];
+    const inputs = ['1001', '2001', '3001', '100', '1e3'];
 
     mockQuestions([...inputs]);
 
-    const promise = Promise.all(inputs.map(() => inputView.getPurChaseAmount()));
+    await Promise.all(
+      inputs.map(() => expect(inputView.inputPurChaseAmount()).rejects.toThrow('[ERROR]'))
+    );
+  });
 
-    await expect(promise).rejects.toThrow(ERROR_MESSAGE.INVALID_PURCHASE_AMOUNT);
+  test('당첨 번호는 1~45 사이의 중복되지 않는 6개의 숫자로 구성되어야 한다.', async () => {
+    const inputs = [
+      '1,2,3,4,5,5',
+      '1,2,3,4,5',
+      '1,2,3,4,5,6,7',
+      '0,1,2,3,4,5',
+      '1,2,3,4,5,46',
+      '1,2,3,4,5,a',
+      '1.1,2,3,4,5,6',
+      '1-2/3;4"5[6',
+      '1,1e2,3,4,5,6',
+    ];
+
+    mockQuestions([...inputs]);
+
+    await Promise.all(
+      inputs.map(() => expect(inputView.inputWinningNumbers()).rejects.toThrow('[ERROR]'))
+    );
   });
 });
