@@ -33,6 +33,29 @@ export default class InputView {
     return numbers;
   }
 
+  async inputBonusNumber(winningNumbers) {
+    const _bonusNumber = await this.#readLineAsync(SYSTEM_MESSAGE.INPUT_BONUS_NUMBER);
+
+    if (!REGEX.ONLY_NUMBER.test(_bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
+    }
+
+    const bonusNumber = Number(_bonusNumber);
+    const isGraterThanMinNumber = bonusNumber >= 1;
+    const isLessThanMaxNumber = bonusNumber <= 45;
+    const invalidNumberRange = !isGraterThanMinNumber || !isLessThanMaxNumber;
+
+    if (invalidNumberRange) {
+      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
+    }
+
+    if (winningNumbers.includes(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
+    }
+
+    return bonusNumber;
+  }
+
   async #readLineAsync(prompt) {
     return Console.readLineAsync(prompt);
   }

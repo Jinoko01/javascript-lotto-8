@@ -1,6 +1,5 @@
 import { mockQuestions } from '../src/utils/testModule.js';
 import InputView from '../src/view/InputView.js';
-import { ERROR_MESSAGE } from '../src/data/messages.js';
 
 describe('입력 테스트', () => {
   let inputView;
@@ -49,6 +48,17 @@ describe('입력 테스트', () => {
 
     await Promise.all(
       inputs.map(() => expect(inputView.inputWinningNumbers()).rejects.toThrow('[ERROR]'))
+    );
+  });
+
+  test('보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 숫자로 구성되어야 한다.', async () => {
+    const winningNumbers = ['1,2,3,4,5,6'];
+    const inputs = ['1', '2', '3', '4', '5', '6', '1.1', '1e2', 'a', '', '0', '46', '@'];
+
+    mockQuestions([...winningNumbers]);
+
+    await Promise.all(
+      inputs.map(() => expect(inputView.inputBonusNumber()).rejects.toThrow('[ERROR]'))
     );
   });
 });

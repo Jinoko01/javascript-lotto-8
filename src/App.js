@@ -14,6 +14,7 @@ class App {
     outputView.printLottos(lottoList);
 
     const winningNumbers = await inputView.inputWinningNumbers();
+    const bonusNumber = await inputView.inputBonusNumber(winningNumbers);
   }
 }
 
