@@ -1,10 +1,13 @@
+import LottoFactory from './model/LottoFactory.js';
 import InputView from './view/InputView.js';
 
 class App {
   async run() {
     const inputView = new InputView();
     const purchaseAmount = await inputView.getPurChaseAmount();
-    console.log(purchaseAmount);
+    const lottoCount = purchaseAmount / 1000;
+    const lottoFactory = new LottoFactory();
+    const lottoList = lottoFactory.createLottos(lottoCount);
   }
 }
 
