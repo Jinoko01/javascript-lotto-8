@@ -12,3 +12,12 @@ export const REWARD = Object.freeze({
   FOUR_MATCH: 50000,
   THREE_MATCH: 5000,
 });
+
+export const RANK = Object.freeze({
+  SIX_MATCH: 'SIX_MATCH',
+  FIVE_MATCH_WITH_BONUS: 'FIVE_MATCH_WITH_BONUS',
+  FIVE_MATCH: 'FIVE_MATCH',
+  FOUR_MATCH: 'FOUR_MATCH',
+  THREE_MATCH: 'THREE_MATCH',
+  NO_MATCH: 'NO_MATCH',
+});
