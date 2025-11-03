@@ -100,6 +100,36 @@ npm run start
 총 수익률은 62.5%입니다.
 ```
 
+## 프로그램 구조
+
+해당 프로그램은 MVC+S 패턴을 기반으로 구성되어 있으며, 각 객체는 다음과 같은 역할을 합니다.
+
+### 컨트롤러(Controller)
+
+- **PurchaseLottoController**: 로또 구매 금액에 대한 사용자 입력을 받고, `LottoFactory`에 로또 구매 동작을 요청합니다.
+- **WinningNumbersController**: 당첨 번호와 보너스 번호에 대한 사용자 입력을 받고, `WinningChecker`에 일치 개수를 검사하는 동작을 요청합니다.
+- **LotteryController**: 일치 개수와 구매 금액을 기반으로 `RankDeterminer`와 `ProfitCalculator`를 사용하여 당첨 결과와 수익률을 계산하고, `OutputView`에 결과를 출력하는 역할을 합니다.
+
+### 모델(Model)
+
+- **LottoFactory**: 1000원 단위로 로또 구매 동작을 수행하는 Model입니다.
+- **Lotto**: 하나의 로또 데이터를 가지는 Model입니다.
+
+### 뷰(View)
+
+- **inputView**: 사용자의 콘솔 입력을 받기 위한 View 입니다.
+- **OutputView**: 결과를 콘솔에 출력하기 위한 View 입니다.
+
+### 서비스(Service)
+
+- **WinningChecker**: 로또 번호와 당첨 번호를 비교하여 일치 개수를 반환하는 Service입니다.
+- **RankDeterminer**: 일치 개수를 기반으로 당첨 결과를 반환하는 Service입니다.
+- **ProfitCalculator**: 당첨 결과와 구매 금액을 기반으로 수익률을 계산하는 Service입니다.
+
+### 유효성 검사(validation)
+
+- **inputValidation**: 사용자의 입력값이 정상적인지 검사합니다.
+
 ## 에러 처리 예시
 
 ```bash
