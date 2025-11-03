@@ -5,7 +5,9 @@ import RankDeterminer from './service/RankDeterminer.js';
 import WinningChecker from './service/WinningChecker.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
-import LottoController from './controller/LottoController.js';
+import PurchaseLottoController from './controller/PurchaseLottoController.js';
+import WinningNumbersController from './controller/WinningNumbersController.js';
+import LotteryController from './controller/LotteryController.js';
 
 class App {
   constructor() {
@@ -15,11 +17,17 @@ class App {
     this.winningChecker = new WinningChecker();
     this.rankDeterminer = new RankDeterminer();
     this.profitCalculator = new ProfitCalculator();
-    this.lottoController = new LottoController(
+    this.purchaseLottoController = new PurchaseLottoController(
       this.inputView,
       this.outputView,
-      this.lottoFactory,
-      this.winningChecker,
+      this.lottoFactory
+    );
+    this.winningNumbersController = new WinningNumbersController(
+      this.inputView,
+      this.winningChecker
+    );
+    this.lotteryController = new LotteryController(
+      this.outputView,
       this.rankDeterminer,
       this.profitCalculator
     );
@@ -27,7 +35,9 @@ class App {
 
   async run() {
     try {
-      await this.lottoController.run();
+      const { purchaseAmount, lottoList } = await this.purchaseLottoController.purchaseLotto();
+      const winningResult = await this.winningNumbersController.inputWinningNumbers(lottoList);
+      this.lotteryController.showResult(winningResult, purchaseAmount);
     } catch (error) {
       Console.print(error.message);
     }
