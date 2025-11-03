@@ -8,10 +8,11 @@ import OutputView from './view/OutputView.js';
 import PurchaseLottoController from './controller/PurchaseLottoController.js';
 import WinningNumbersController from './controller/WinningNumbersController.js';
 import LotteryController from './controller/LotteryController.js';
+import InputValidation from './validation/inputValidation.js';
 
 class App {
   constructor() {
-    this.inputView = new InputView();
+    this.inputView = new InputView(new InputValidation());
     this.outputView = new OutputView();
     this.lottoFactory = new LottoFactory();
     this.winningChecker = new WinningChecker();
