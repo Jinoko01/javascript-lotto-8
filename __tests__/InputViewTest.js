@@ -1,11 +1,12 @@
 import { mockQuestions } from '../src/utils/testModule.js';
+import InputValidation from '../src/validation/inputValidation.js';
 import InputView from '../src/view/InputView.js';
 
 describe('입력 테스트', () => {
   let inputView;
 
   beforeEach(() => {
-    inputView = new InputView();
+    inputView = new InputView(new InputValidation());
   });
 
   test('로또 구매 금액은 1,000원 단위의 정수로 입력받는다.', async () => {
